@@ -1,12 +1,38 @@
-import React from 'react'
+import {FaLock, FaUser} from "react-icons/fa"
 
-const login = () => {
+import { useState } from "react"
+import "./login.css"
+
+const Login = () => {
+    const [username,setUsername]=useState("")
+    const [password,setPassword]=useState("")
+    const handleSubmit=(e) =>{
+        e.preventDefault()
+        console.log(username,password)
+        console.log("Envio")
+    }
     return (
 
         <div className="container">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h1> Acesse o sistema</h1>
-                <input type="email" placeholder='E-mail' />
+                <div className="input-field">
+                    <input type="text" placeholder='Usuário' onChange={(e)=>setUsername(e.target.value)} required/>
+                    <FaUser className="icon"/>
+                </div>
+                <div className="input-field">
+                    <input type="password" placeholder='Senha'onChange={(e)=>setPassword(e.target.value)} required/>
+                    <FaLock className="icon"/>
+                </div>
+                <div className="recall-forget">
+                    <label htmlFor="">
+                        <input type="checkbox"/>
+                        Lembre de mim
+                    </label>
+                    <a href="a">Esqueceu a senha?</a>
+                </div>
+                <button>Entrar</button>
+
 
             </form>
         </div>
@@ -14,4 +40,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login
