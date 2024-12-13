@@ -29,12 +29,31 @@
     font-size: 16px;
     color: #fff;
     padding: 20px 25px;
+    transition: border-color 0.3s ease;
 }
 .input-field input::placeholder{
-    color: #fff;
+    color: transparent;
 
 }
-.input-field .icon{
+.input-field .placeholder-label {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    transition: all 0.3s ease;
+    
+}
+
+.input-field input:not(:placeholder-shown) + .placeholder-label,
+.input-field input:focus + .placeholder-label {
+    transform: translateY(-20px);
+    font-size: 12px;
+    padding-bottom: 16px;
+    color: rgba(255,255,2555,0.2);
+}
+.input-field .icon,.icon2{
     position: absolute;
     right: 25px;
     top: 50%;
@@ -42,6 +61,9 @@
     font-size: 18px;
     color: #fff;
 
+}
+.input-field .icon{
+    cursor: pointer;
 }
 .container .recall-forget{
     display: flex;
