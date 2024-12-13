@@ -1,7 +1,8 @@
 import {FaLock, FaUser,FaEyeSlash,FaRegEye } from "react-icons/fa"
-
+import logo from "../../assets/logoPreta.svg";
 import { useState } from "react"
 import "./login.css"
+
 
 const Login = () => {
     const [username,setUsername]=useState("")
@@ -18,6 +19,8 @@ const Login = () => {
 
         <div className="container">
             <form onSubmit={handleSubmit}>
+
+                <img src={logo} alt="Logo do sistema" className="logo" />
                 <h1> Acesse o sistema</h1>
                 <div className="input-field">
                     <input type="text" placeholder='' onChange={(e)=>setUsername(e.target.value)} />

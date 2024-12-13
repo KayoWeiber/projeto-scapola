@@ -8,6 +8,13 @@
 
 
 }
+.logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
 .container h1{
     text-align: center;
     font-size: 30px;
@@ -49,7 +56,7 @@
 .input-field input:not(:placeholder-shown) + .placeholder-label,
 .input-field input:focus + .placeholder-label {
     transform: translateY(-20px);
-    font-size: 12px;
+    font-size: 10px;
     padding-bottom: 16px;
     color: rgba(255,255,2555,0.2);
 }
