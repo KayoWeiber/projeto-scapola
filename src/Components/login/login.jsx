@@ -1,6 +1,7 @@
 import {FaLock, FaUser,FaEyeSlash,FaRegEye } from "react-icons/fa"
-import logo from "../../assets/logoPreta.svg";
+import logo from "../../assets/logoBranca.svg";
 import { useState } from "react"
+import Lines from "../lines/index.tsx";
 import "./login.css"
 
 
@@ -16,8 +17,8 @@ const Login = () => {
     const togglePasswordVisibility = () => { setShowPassword(!showPassword);}
 
     return (
-
         <div className="container">
+            
             <form onSubmit={handleSubmit}>
 
                 <img src={logo} alt="Logo do sistema" className="logo" />
