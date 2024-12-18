@@ -18,7 +18,7 @@ const Login = () => {
 
     return (
         <div className="login-wrapper">
-            <Lines />
+            <Lines/>
             <div className="container">
                 <form onSubmit={handleSubmit}>
                     <img src={logo} alt="Logo do sistema" className="logo" />
