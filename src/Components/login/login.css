@@ -1,15 +1,21 @@
-.container{
-    width: 450px;
-    background-color: rgba(255,255,255,0.15);
+* {
+    margin: 0;
+    padding: 0;
+ 
+}
+
+.container {
+    width: 450px; /* Fixa o tamanho */
+    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     padding: 40px;
     border-radius: 10px;
-    position: relative; /* Permite sobreposição controlada */
+    position: relative;
     z-index: 10;
-
-
 }
+
+
 .logo {
     display: block;
     margin: 0 auto;
@@ -119,7 +125,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-  }
+}
+
   
   .login-wrapper .container {
     position: relative;
@@ -129,4 +136,8 @@
   .login-wrapper span {
     opacity: 0.2;
   }
-  
+  @media (max-width: 480px) {
+    .container {
+        max-width: 90%; /* Ocupa 90% da largura da tela */
+    }
+}
