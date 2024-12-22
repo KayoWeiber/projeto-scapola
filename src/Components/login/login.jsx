@@ -11,23 +11,35 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        if (!email || !password) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+        console.log('Dados enviados:', { email, password });
         axios.post("http://localhost:3001/login", { email, password })
-        .then((response) => {
-            console.log(response.data);
-            // Salve o token, se necessário
-            navigate("/acesso");
-        })
-        .catch((error) => {
-            console.error(error.response.data);
-        });
+            .then((response) => {
+                setIsLoading(false);
+                console.log('Resposta do servidor:', response.data);
+                alert("Acesso concedido");
+                navigate("/acesso");
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                const errorMessage = error.response?.data?.error || "Erro ao conectar ao servidor.";
+                alert(errorMessage);
+                console.error('Erro ao logar:', errorMessage);
+            });
     };
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
     return (
         <div className="login-wrapper">
             <Lines />
@@ -69,7 +81,9 @@ const Login = () => {
                     <div className="recall-forget">
                         <a href="#">Esqueceu a senha?</a>
                     </div>
-                    <button type="submit">Entrar</button>
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? "Entrando..." : "Entrar"}
+                    </button>
                 </form>
             </div>
         </div>
