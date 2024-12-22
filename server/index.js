@@ -13,7 +13,7 @@ app.use(cors());
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
+    database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
 });
@@ -33,18 +33,15 @@ app.post('/login', async (req, res) => {
     if (!email || !password) {
         return res.status(400).json({ error: 'E-mail e senha são obrigatórios' });
     }
-
     try {
         const result = await pool.query('SELECT * FROM login WHERE email = $1', [email]);
 
         if (process.env.NODE_ENV === 'development') {
-            console.log(`Resultado da consulta: ${JSON.stringify(result.rows)}`);
-        }
+            console.log(`Resultado da consulta: ${JSON.stringify(result.rows)}`);}
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Usuário não encontrado' });
         }
-
         const user = result.rows[0];
         const validPassword = await bcrypt.compare(password, user.senha);
 
@@ -64,9 +61,10 @@ app.post('/login', async (req, res) => {
 
         res.json({ message: 'Login bem-sucedido', token });
     } catch (err) {
-        console.error('Erro no servidor:', err);
-        res.status(500).json({ error: 'Erro no servidor' });
+        console.error('Erro no servidor:', err.message); // Exibe apenas a mensagem do erro
+        res.status(500).json({ error: 'Erro no servidor', details: err.message });
     }
+    
 });
 
 // Encerramento elegante do pool de conexões
