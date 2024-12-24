@@ -1,11 +1,13 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
  
 }
 
 .container {
-    width: 450px; /* Fixa o tamanho */
+    width: 90%;
+    max-width: 450px;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.2);
